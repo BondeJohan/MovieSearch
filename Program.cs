@@ -20,12 +20,16 @@ namespace MovieSearch
 
             string uriID = $"https://api.themoviedb.org/3/movie/{id}?api_key={key}";
 
-            string search = $"https://api.themoviedb.org/3/search/movie?api_key={key}query={title}";
+            string search = $"https://api.themoviedb.org/3/search/movie?api_key={key}&query={title}";
 
             var respone = await client.GetAsync(uriID);
             respone.EnsureSuccessStatusCode();
+            
+            var searchRespone = await client.GetAsync(search);
+            respone.EnsureSuccessStatusCode();
 
             string responeContent = await respone.Content.ReadAsStringAsync();
+            string searchResponeContent = await searchRespone.Content.ReadAsStringAsync();
 
             FindMovieByID test = JsonConvert.DeserializeObject<FindMovieByID>(responeContent);
 
