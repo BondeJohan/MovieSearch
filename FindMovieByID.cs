@@ -33,16 +33,18 @@ namespace MovieSearch
             Console.WriteLine("\nLanguage: {0}", Original_Language);
             Console.WriteLine("Runtime: {0} min", RunTime);
             Console.WriteLine("Release date: {0}", Release_Date);
+            Console.Write("Genre: ");
             ShowAllGenres();
-            Console.WriteLine("Avreage Vote: {0}", Vote_Average);
+            Console.WriteLine("\nAvreage Vote: {0}", Vote_Average);
             Console.WriteLine("Homepage: {0}", HomePage);
-            Console.WriteLine("Poster adress: {0}", Poster_Path);
+            Console.WriteLine($"Poster adress: https://image.tmdb.org/t/p/w500{Poster_Path}");
         }
         public void ShowAllGenres()
         {
             foreach (var genre in Genres)
             {
-                Console.WriteLine(genre.Name);
+                Console.Write(genre.Name);
+                Console.Write(" ");
             }
         }
     }
