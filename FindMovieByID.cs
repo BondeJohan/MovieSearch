@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieSearch
 {
-    class FindMoiveByID
+    class FindMovieByID
     {
         public string Title { get; set; }
         public string Overview { get; set; }

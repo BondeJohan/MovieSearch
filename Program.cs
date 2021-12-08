@@ -8,18 +8,22 @@ using Newtonsoft.Json;
 namespace MovieSearch
 {
     class Program
-    {
+    {       
+
         public static HttpClient client = new HttpClient();
         static async Task Main(string[] args)
         {
-            string uri = @"";
+            DotNetEnv.Env.TraversePath().Load();
+            string key = Environment.GetEnvironmentVariable("API_KEY");
+
+            string uri = $"";
 
             var respone = await client.GetAsync(uri);
             respone.EnsureSuccessStatusCode();
 
             string responeContent = await respone.Content.ReadAsStringAsync();
 
-            FindMoiveByID test = JsonConvert.DeserializeObject<FindMoiveByID>(responeContent);
+            FindMovieByID test = JsonConvert.DeserializeObject<FindMovieByID>(responeContent);
 
             test.DisplayFoundMoive();
         }
