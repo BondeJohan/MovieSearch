@@ -12,14 +12,22 @@ namespace MovieSearch
         public static HttpClient client = new HttpClient();
         static async Task Main(string[] args)
         {
-            string uri = @"";
+            DotNetEnv.Env.TraversePath().Load();
+            string key = Environment.GetEnvironmentVariable("API_KEY");
 
-            var respone = await client.GetAsync(uri);
+            int id = 100;
+            string title = "Deadpool";
+
+            string uriID = $"https://api.themoviedb.org/3/movie/{id}?api_key={key}";
+
+            string search = $"https://api.themoviedb.org/3/search/movie?api_key={key}query={title}";
+
+            var respone = await client.GetAsync(uriID);
             respone.EnsureSuccessStatusCode();
 
             string responeContent = await respone.Content.ReadAsStringAsync();
 
-            FindMoiveByID test = JsonConvert.DeserializeObject<FindMoiveByID>(responeContent);
+            FindMovieByID test = JsonConvert.DeserializeObject<FindMovieByID>(responeContent);
 
             test.DisplayFoundMoive();
         }
