@@ -8,7 +8,6 @@ namespace MovieSearch
 {
     class ListOfMovies
     {
-        public List<MovieByTitle.Result> results { get; set; }
-
+        public List<MovieByTitle.Result> Results { get; set; }
     }
 }
