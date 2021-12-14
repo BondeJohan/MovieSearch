@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MovieSearch
@@ -17,11 +15,15 @@ namespace MovieSearch
         public string HomePage { get; set; }
         public string Poster_Path { get; set; }
 
-        public void SearchForMovieByid()
+        public static int SearchForMovieByid()
         {
+            Console.Write("Enter Id for a moive: ");
+            int movieID = Convert.ToInt32(Console.ReadLine());
 
+            return movieID;
         }
-        public void DisplayFoundMoive() 
+
+        public void DisplayFoundMoive()
         {
             Console.WriteLine("Title: {0}", Title);
             Console.WriteLine("\nDescription: {0}", Overview);
