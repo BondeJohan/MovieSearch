@@ -53,7 +53,7 @@ namespace MovieSearch
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Wrong input.\n");
+                    Console.WriteLine("Not correct input.\n");
                 }
 
             }
@@ -106,12 +106,19 @@ namespace MovieSearch
                         MovieByID movieByIndexID = JsonConvert.DeserializeObject<MovieByID>(movieIdResponeContent);
                         movieByIndexID.DisplayFoundMoive();
                     }
-
+                    else
+                    {
+                        Console.WriteLine("Not correct Input");
+                    }
 
                 }
                 catch (HttpRequestException)
                 {
                     Console.WriteLine("\nNo movie could be found.");
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
 
@@ -135,7 +142,7 @@ namespace MovieSearch
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Wrong input.\n");
+                    Console.WriteLine("Not correct Input.\n");
                 }
             }
 
