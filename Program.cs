@@ -24,8 +24,8 @@ namespace MovieSearch
             {
                 Console.WriteLine("Movie Search!");
                 Console.WriteLine("\n1. Search by movie ID.");
-                Console.WriteLine("2. Search by movie title");
-                Console.WriteLine("3. Quit Movie Search!");
+                Console.WriteLine("2. Search by movie title.");
+                Console.WriteLine("3. Exit Movie Search.");
                 Console.Write("\nEnter number: ");
 
                 if (int.TryParse(Console.ReadLine(), out int mainMenuChoice))
@@ -41,7 +41,7 @@ namespace MovieSearch
                             SearchWithTitle().Wait();
                             break;
                         case 3:
-                            Environment.Exit(0);
+                            ExitMovieSearch();
                             break;
                         default:
                             Console.Clear();
@@ -156,7 +156,7 @@ namespace MovieSearch
                             MainMenu();
                             break;
                         case 2:
-                            Environment.Exit(0);
+                            ExitMovieSearch();
                             break;
                     }
                 }
@@ -165,6 +165,13 @@ namespace MovieSearch
                     Console.Clear();
                     Console.WriteLine("Not correct Input.\n");
                 }
+            }
+
+            void ExitMovieSearch()
+            {
+                Console.Clear();
+                Console.WriteLine("Exiting Search Movies.");
+                Environment.Exit(0);
             }
         }
     }
