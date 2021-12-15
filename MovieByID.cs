@@ -17,15 +17,23 @@ namespace MovieSearch
 
         public static int SearchForMovieByid()
         {
-            Console.Write("Enter Id for a moive: ");
-            int movieID = Convert.ToInt32(Console.ReadLine());
-
-            return movieID;
+            while (true)
+            {
+                Console.Write("Enter Id for a movie: ");
+                if (int.TryParse(Console.ReadLine(), out int movieID))
+                {
+                    return movieID;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Inpput");
+                }
+            }
         }
 
         public void DisplayFoundMoive()
         {
-            Console.WriteLine("Title: {0}", Title);
+            Console.WriteLine("\nTitle: {0}", Title);
             Console.WriteLine("\nDescription: {0}", Overview);
             Console.WriteLine("\nLanguage: {0}", Original_Language.ToUpper());
             Console.WriteLine("Runtime: {0} min", Runtime);

@@ -21,6 +21,7 @@ namespace MovieSearch
                 MainMenu();
             }
 
+            /*
             int id = MovieByID.SearchForMovieByid();
             string title = "Fight Club";
 
@@ -61,30 +62,33 @@ namespace MovieSearch
             {
                 Console.WriteLine(e.Message);
             }
+            */
 
             void MainMenu()
             {
                 Console.WriteLine("Movie Search!");
-                Console.WriteLine("1. Search by movie ID.");
+                Console.WriteLine("\n1. Search by movie ID.");
                 Console.WriteLine("2. Search by movie title");
                 Console.WriteLine("3. Quit Movie Search!");
                 Console.Write("\nEnter number: ");
 
-                if (int.TryParse(Console.ReadLine(), out int choice))
+                if (int.TryParse(Console.ReadLine(), out int mainMenuChoice))
                 {
-                    switch (choice)
+                    switch (mainMenuChoice)
                     {
                         case 1:
+                            Console.Clear();
+                            SearchWithId();
                             break;
                         case 2:
                             break;
                         case 3:
-                            QuitMovieSearch();
+                            runApp = QuitMovieSearch();
                             break;
                         default:
                             Console.Clear();
                             Console.WriteLine("That is not an option.\n");
-                            break;
+                            return;
                     }
                 }
                 else
@@ -95,9 +99,55 @@ namespace MovieSearch
 
             }
 
-            void QuitMovieSearch()
+             async Task SearchWithId()
             {
-                runApp = false;
+                try 
+                {                    
+                    int id = MovieByID.SearchForMovieByid();
+                    string uriID = $"https://api.themoviedb.org/3/movie/{id}?api_key={key}";
+                    var respone = await client.GetAsync(uriID);
+                    respone.EnsureSuccessStatusCode();
+                    string responeContent = await respone.Content.ReadAsStringAsync();
+                    MovieByID foundMovie = JsonConvert.DeserializeObject<MovieByID>(responeContent);
+                    foundMovie.DisplayFoundMoive();
+                    //SearchAgain();
+                }
+                catch (HttpRequestException)
+                {
+                    Console.WriteLine("\nNo movie could be found.");
+                }
+
+            }
+
+            void SearchAgain()
+            {
+                Console.WriteLine("\nDo you want to search for another movie?");
+                Console.WriteLine("1. Yes.");
+                Console.WriteLine("2. No.");
+                if (int.TryParse(Console.ReadLine(), out int searchChoice))
+                {
+                    switch (searchChoice)
+                    {
+                        case 1:
+                            MainMenu();
+                            break;
+                        case 2:
+                            runApp = QuitMovieSearch();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Wrong input.\n");
+                }
+            }
+
+            bool QuitMovieSearch()
+            {
+                bool StopApp = false;
+
+                return StopApp;
             }
         }
     }
