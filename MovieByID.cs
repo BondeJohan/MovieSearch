@@ -33,7 +33,8 @@ namespace MovieSearch
 
         public void DisplayFoundMoive()
         {
-            Console.WriteLine("\nTitle: {0}", Title);
+            Console.Clear();
+            Console.WriteLine("Title: {0}", Title);
             Console.WriteLine("\nDescription: {0}", Overview);
             Console.WriteLine("\nLanguage: {0}", Original_Language.ToUpper());
             Console.WriteLine("Runtime: {0} min", Runtime);
