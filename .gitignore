@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # Hide .env-file
 .env
+
+# Hide .md-file
+markdowncheatsheat.md
