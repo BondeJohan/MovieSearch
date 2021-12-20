@@ -101,7 +101,7 @@ namespace MovieSearch
                     }
                     foreach (var item in allmovies.Results)
                     {
-                        Console.WriteLine("Index: {0}: {1}", allmovies.Results.IndexOf(item), item.Title);
+                        Console.WriteLine("Index {0}: {1}", allmovies.Results.IndexOf(item), item.Title);
                     }
                     
                     try
